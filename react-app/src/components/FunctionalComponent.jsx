@@ -3,6 +3,12 @@ import { useState } from "react";
 let count = 0;
 let text = "";
 
+// conditional rendering variable
+let loading = false;
+
+// list
+let arr = ["AAA", "BBB", "CCC", "DDD"];
+
 function FunctionalComponent() {
   const onIncrementCount = () => {
     count = count + 1;
@@ -22,6 +28,22 @@ function FunctionalComponent() {
     return <button>Submit</button>;
   }
 
+  // or,
+
+  const Button = () => <button>Submit</button>;
+
+  function DemoFunction() {
+    return (
+      // When we create a Functional Component with many html elements there must be a parrent element, without it we get an error, For example -
+      <>
+        <h1>
+          This is another Functional Component where I put many html elements
+        </h1>
+        <button>Submit</button>
+      </>
+    );
+  }
+
   return (
     <>
       <h1>Functional component</h1>
@@ -33,9 +55,11 @@ function FunctionalComponent() {
       <button id="btn" onClick={onIncrementCount}>
         Increment
       </button>
+
       <p>
         count: {count} <strong>#check console</strong>
       </p>
+
       <h3>
         # above we see when I click on the button the value of `count` is
         updated but it does not reflect on the page that solved using useState
@@ -51,8 +75,23 @@ function FunctionalComponent() {
         />
       </div>
       <br />
+
       {/* Use Functional Component */}
       <MyButton />
+      <Button />
+
+      {/* Conditional rendering */}
+      {loading ? <p>Page Loaded</p> : <p>Loaing...</p>}
+
+      {/* Rendering List */}
+      /* In react for printing a list we didn't use loop we used hired order
+      function */
+      {
+        arr.map(item => <p>
+          {item}
+        </p>)
+      }
+
     </>
   );
 }
